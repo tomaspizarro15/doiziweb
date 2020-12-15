@@ -1,0 +1,2 @@
+Titles ::::::>
+Funcion(text : String , color : String) => JSX Component

@@ -1,0 +1,12 @@
+.header_cnt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    width: 99.5%;
+    height: 100%;  
+    color: white;
+}
+.header_cnt a {
+    color : white;
+    margin: 0 5px 0 5px;
+}
