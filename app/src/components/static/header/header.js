@@ -15,7 +15,7 @@ class Header extends Component {
     render() {
         return(
             <header className="header_cnt">
-                <p>This will be great</p>
+                <p style={{fontWeight : "bold" , fontSize:"24px"}}>DOIZI</p>
                 <Linker links = {this.state.links}/>
             </header>
         )

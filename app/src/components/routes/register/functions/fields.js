@@ -2,10 +2,15 @@ import React from 'react';
 import './../register.css'
 const Fields = (props) => {
     let field;
-
-    switch (props.field.type) {
+    let errorMsg; 
+    let fieldStatus = "register_input" 
+    if(!props.field.status) {
+        fieldStatus = "register_input error"
+        errorMsg = <p>{props.field.errorHelp}</p>
+    }
+    switch (props.field.element) {
         case 'input':
-            field = <input className="register_input" onChange={props.change} placeholder={props.field.placeholder} value={props.field.value} />
+            field = <input  type = {props.field.type} className={fieldStatus} onChange={props.change} placeholder={props.field.placeholder} value={props.field.value} />
             break;
         case 'select':
             field = [<select className="register_select" onChange={props.change}>{props.field.options.map(option => <option className="register_select" selected={option.default} value={option.value}>{option.value}</option>)}</select>]
@@ -16,6 +21,7 @@ const Fields = (props) => {
         <div className="field_container">
             <label className="field_label">{props.field.label}</label>
             {field}
+            {errorMsg}
         </div>
     )
 }

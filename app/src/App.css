@@ -5,14 +5,13 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: #dddddd;
 }
 .application_header {
     display: inline-flex;
     justify-content: center;
     width: 100%;
     height: 5%;
-    background-color: #3b3b3b;
+    background-color: #5A7EFF;
 }
 .application_body {
     width: 100%;
@@ -21,7 +20,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #cccccc;
+    background-color: #dddddd;
 
 }
 .application_body__component {
@@ -31,7 +30,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #dddddd;
+    background-color: #eeeeee;
 }
 .application_foot {
     display: flex;
@@ -39,7 +38,7 @@
     align-items: center;
     width: 100%;
     height: 5%;
-    background-color: #3b3b3b;
+    background-color: #eeeeee;
 }
 @media(max-width : 768px ) {
     .application_header {
