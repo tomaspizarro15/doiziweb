@@ -2,8 +2,11 @@
     background-color: white;
     width: 25%;
     height: 90%;
+    z-index: 1001;
     border-radius: 32px;
-    
+}
+.register_wrapper.cyberpunk {
+    background-color: #f2e900;
 }
 .register {
     display: flex;
@@ -13,6 +16,7 @@
     width: 100%;
     border-radius: 4px;
     border-radius: 16px;
+    z-index: 1001;
 }
 .register_background {
     display: flex;
@@ -22,6 +26,9 @@
     height: 30%;            
     background-color: white;
     border-radius: 16px 16px 0 0;
+}
+.register_background.cyberpunk {
+    background-color: #f2e900;
 }
 .register_data {
     background-color: #5A7EFF;
@@ -33,6 +40,9 @@
     height: 70%;
     width: 100%;
     box-shadow: inset  0 10px 15px -15px;
+}
+.register_data.cyberpunk {
+    background-color: #2b2b2b;
 }
 .field_container {
     width: 60%;
@@ -58,6 +68,13 @@
     outline: none;
     margin: 5px 0 5px 0;
 }
+
+.register_input.cyberpunk , .register_select.cyberpunk {
+    border-radius: 4px;
+    border: 2px solid #02d7f2;
+    width: 100%;
+}
+
 .register_data p{
     color : red;
     margin: 0;
