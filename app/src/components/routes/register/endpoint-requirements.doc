@@ -23,4 +23,10 @@ error object appended
 401 Unauthorized ------> If the request does not pass the body validator wroten in controller
 error object appended
 array of errors with message
-201 Created ---------> If the request is correct
+201 Created ---------> If the request is correct 
+Returns :> 
+{
+    user : String, 
+    status : Number, 
+    token : String
+}

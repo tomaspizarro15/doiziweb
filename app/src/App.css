@@ -3,8 +3,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
+}
+.application_container.cyberpunk {
+    display: flex;
+    align-items: left;
+    justify-content: left;
 }
 .application_header {
     display: inline-flex;
@@ -17,8 +23,8 @@
 .application_header.cyberpunk {
     background-color: #f2e900;
     color: black;
+    transition : all 250ms ease-in; 
 }
-
 .application_body {
     width: 100%;
     height: 100%;
@@ -27,24 +33,27 @@
     justify-content: center;
     align-items: center;
     background-color: #dddddd;
+    transition : all 250ms ease-in; 
 }
 .application_body.cyberpunk {
     background-color: #0b0b0b;
+    transition : all 250ms ease-in; 
 }
 .application_body__component {
-    width: 99%;
-    height: 98%;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    
-    background-color: #eeeeee;
-    border-radius: 6px;
+    align-items: center;  
+    transition : all 250ms ease-in; 
+    background-color: #2b2b2b;
+
 }
 .application_body__component.cyberpunk {
-    background-color: #1b1b1b;
-  
+    background: url('./cyberpunk-5774101_1920.jpg'); 
+    background-size: 100%;
+    transition : all 250ms ease-in; 
     animation: infinite iluminateme 4s ease-in-out;
 }
 .application_foot {
@@ -54,9 +63,11 @@
     width: 100%;
     height: 5%;
     background-color: #eeeeee;
+    transition : all 250ms ease-in; 
 }
 .application_foot.cyberpunk {
     background-color: #0b0b0b;
+    transition : all 250ms ease-in; 
     
 }
 
