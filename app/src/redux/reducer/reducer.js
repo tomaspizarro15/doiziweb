@@ -8,9 +8,9 @@ const storedState = {
 const reducer = (state = storedState, action) => {
 
     switch (action.type) {
-        case Action.CHANGE_THEME:
+        case Action.SET_USER:
             const newState = { ...state };
-            newState.cyberpunk = !newState.cyberpunk;
+            newState.user = action.payload; 
             return newState;
         default:
             break;

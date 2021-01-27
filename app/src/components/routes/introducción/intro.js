@@ -5,10 +5,11 @@ import './intro.css';
 
 
 
-const intro = (props) => {
+const Intro = (props) => {
    return(
-       <Fragment>
-           
-       </Fragment>
+        <div className="intro_container">
+            <p>!sup</p>
+        </div>
    )
 }
+export default Intro; 

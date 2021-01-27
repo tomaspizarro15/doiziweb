@@ -10,3 +10,11 @@
     color : white;
     margin: 0 5px 0 5px;
 }
+.header_button {
+    padding: 7.5px;
+    width: 5%;
+    background-color: #2b2b2b;
+    color: white;
+    border: 0px;
+    border-radius: 32px;
+ }

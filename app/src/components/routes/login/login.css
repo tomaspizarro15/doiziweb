@@ -1,21 +1,67 @@
 .login_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
     height: 100%;
+    justify-content: start;
     background-color: #2b2b2b;
+    animation: bright 1.5s ease-in-out;
 }
 .login{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 25%;
-    height: 75%;
+    height: 70%;
     background-color: #ffffff;
-    
+    justify-content: start;
     border-radius:  0 0 16px 16px;
-    animation: transformMe 2.5s ease-out;
+    animation: transformMe 2s ease-out;
+}
+.login_title {
+    font-size: 60px;
+    color: white;
+    animation: loginTitle 0.75s;
+}
+.login_info {
+    width: 100%;
+    height: 40%;
+    background-color: #5A7EFF;
+    border-radius:  0 0 64px 16px;
+    animation: translateMe 1.25s;
+    animation-delay: 500ms;
+}
+.login_h1 {
+    color: #5A7EFF;
+    font-size: 26px;
+}
+.login_form {
+    width: 100%;
+}
+.login_form input {
+    width: 75%;
+    padding: 4px;
+    outline: 0;
+    border: #6b6b6b 2px solid;
+    border-radius: 16px;
+    text-indent: 5px;
+    transition : all 250ms ease; 
+}
+.login_form input:focus {
+    border: #5A7EFF 2px solid;
+    transition : all 250ms ease; 
+}
+.login_form label {
+    font-size: 20px;
+    color: #5A7EFF;
+    margin:5px 0 5px 0;
+}
+.login a {
+    color: black;
+}
+.login_button {
+    padding: 7.5px;
+    width: 50%;
+    border-radius: 32px;
+    border: none;
+    background-color: #2b2b2b;
+    color: white;
+    margin-top: 5%;
 }
 @keyframes transformMe {
     0% {
@@ -25,5 +71,39 @@
     100% {
         transform: translateY(0%);
         opacity: 1;
+    }
+}
+@keyframes translateMe {
+    0% {
+        transform: translateY(-150%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+@keyframes loginTitle {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@media(max-width : 1200px) {
+    .login {
+        width: 25rem;
+    }
+}
+@media(max-width : 768px) {
+    .login {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        animation: transformMe 1.5s ease-in-out;
     }
 }

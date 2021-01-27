@@ -3,7 +3,6 @@ import Title from '../../../util/Titles/titles';
 import Fields from './functions/fields';
 import { connect } from 'react-redux';
 import * as cookies from '../../../factory/cookie'
-import * as ActionType from '../../../redux/actions/actions'
 
 import './register.css';
 import Cookies from 'universal-cookie';
@@ -14,7 +13,7 @@ class Register extends Component {
     state = {
         color: {
             text: "#1B1B1B",
-            doizi: "#F2E900 cyberpunk"
+            doizi: "#5A7EFF"
         },
         wrapperStyle: false,
         fields: [
@@ -51,6 +50,7 @@ class Register extends Component {
                 email: fields[3].value,
                 password: fields[4].value,
                 confirmation: fields[5].value,
+                country : fields[6].value,
             })
         })
             .then((res) => res.json())
@@ -59,6 +59,7 @@ class Register extends Component {
                 if (data.status === 201) {
                     const cookie = new Cookies();
                     cookie.set('session', data.token)
+                    window.location.reload() 
                 }
             })
             .catch(err => {
@@ -69,18 +70,10 @@ class Register extends Component {
         let phrase = this.state.phrase.split('')
         let daftpunkCameo = this.state.daftpunkCameo.split(' ')
         let styles = {
-            wrapper: "register_wrapper cyberpunk",
-            background: "register_background cyberpunk",
-            data: "register_data cyberpunk",
-            input: "register_input cyberpunk",
-        }
-        if (!this.props.cyberpunk) {
-            styles = {
-                wrapper: "register_wrapper",
-                background: "register_background",
-                data: "register_data",
-                input: "register_input",
-            }
+            wrapper: "register_wrapper",
+            background: "register_background",
+            data: "register_data",
+            input: "register_input",
         }
         return (
             <div className="register_container">
@@ -98,25 +91,14 @@ class Register extends Component {
                 </div>
                 <div className="register_side">
                     <div>
-                        {phrase.map((el, i) => <p key={i} className="register_side__phrase" style={{ animationDelay: `${i * 100}ms` }}>{el}</p>)}
+                        {phrase.map((el, i) => <p key={i} className="register_side__phrase" style={{ animationDelay: `${(i * 100) + 200}ms` }}>{el}</p>)}
                     </div>
                     <div>
-                        {daftpunkCameo.map((el , i) => <p key={el} className="register_side__cameo" style= {{ animationDelay: `${i * 1000}ms` }}>{el}</p>)}
+                        {daftpunkCameo.map((el , i) => <p key={el} className="register_side__cameo" style= {{ animationDelay: `${(i * 1000) + 500}ms` }}>{el}</p>)}
                     </div>
                 </div>
             </div>
         )
     }
 }
-
-const mapStateToProps = (state) => {
-    return {
-        cyberpunk: state.cyberpunk,
-    }
-}
-const dispatchActionsToProps = (dispatch) => {
-    return {
-        changeTheme: () => dispatch(ActionType.changeTheme)
-    }
-}
-export default connect(mapStateToProps, dispatchActionsToProps)(Register); 
+export default Register; 

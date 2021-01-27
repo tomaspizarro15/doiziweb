@@ -1,9 +1,5 @@
 .application_container {
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100%;
 }
@@ -28,10 +24,6 @@
 .application_body {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: #dddddd;
     transition : all 250ms ease-in; 
 }
@@ -47,15 +39,10 @@
     justify-content: center;
     align-items: center;  
     transition : all 250ms ease-in; 
-    background-color: #2b2b2b;
+    background-color: #ffffff;
 
 }
-.application_body__component.cyberpunk {
-    background: url('./cyberpunk-5774101_1920.jpg'); 
-    background-size: 100%;
-    transition : all 250ms ease-in; 
-    animation: infinite iluminateme 4s ease-in-out;
-}
+
 .application_foot {
     display: flex;
     justify-content: center;
@@ -65,12 +52,6 @@
     background-color: #eeeeee;
     transition : all 250ms ease-in; 
 }
-.application_foot.cyberpunk {
-    background-color: #0b0b0b;
-    transition : all 250ms ease-in; 
-    
-}
-
 @media(max-width : 768px ) {
     .application_header {
         display: none;
@@ -85,4 +66,23 @@
     .application_foot {
         display: none;
     }
+}
+
+.dis {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.disR {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.disRL {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
 }

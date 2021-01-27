@@ -1,7 +1,8 @@
-export const CHANGE_THEME = "CHANGE_THEME";
+export const SET_USER = "SET_USER";
 
-export const changeTheme = () => {
+export const setUser = (user) => {
     return {
-        type: CHANGE_THEME,
+        type: SET_USER,
+        payload : user,
     }
 }   

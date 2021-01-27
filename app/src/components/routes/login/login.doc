@@ -1,0 +1,8 @@
+ENDPOINT Requirements 
+
+login fetch requires 2 properties in the request body
+ 
+ {
+     email : String,
+     password : String,
+ }
