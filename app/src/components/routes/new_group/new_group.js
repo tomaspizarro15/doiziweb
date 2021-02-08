@@ -1,10 +1,10 @@
 
 import React, { Fragment, useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
-import searchBar from '../../../util/SearchBar/searchBar';
 import SearchBar from '../../../util/SearchBar/searchBar';
 import Title from '../../../util/Titles/titles';
 import './new_group.css';
+import Fields from '../../../util/Fields/fields';
 const newGroup = (props) => {
 
     const [user, setUser] = useState({})
@@ -64,6 +64,21 @@ const newGroup = (props) => {
                     },
                 }
             },
+            {
+                id: 2,
+                label: "Imagen del grupo",
+                type: 'file',
+                value: "",
+                placeholder: "file",
+                error: false,
+                requirements: {
+                    length: {
+                        required: true,
+                        min: 0,
+                        max: 250,
+                    },
+                }
+            },
         ]
     })
     const [foundUsers, setFoundUsers] = useState([])
@@ -99,6 +114,9 @@ const newGroup = (props) => {
         fields[i].value = event.target.value;
         setState({ fields: fields, searchBar: state.searchBar })
     }
+
+   
+
     return (
         <div className="dis main_container">
             <div className="disRLT new_group__container">
@@ -108,7 +126,7 @@ const newGroup = (props) => {
                         return (
                             <Fragment key={field.id}>
                                 <label>{field.label}</label>
-                                <input className="global_input" placeholder={field.placeholder} value={field.value} onChange={(event) => { inputHandler(event, field.id) }} ></input>
+                                <Fields field = {field} change = {(event) => {inputHandler(event , field.id)}}/>
                             </Fragment>
                         )
                     })}
