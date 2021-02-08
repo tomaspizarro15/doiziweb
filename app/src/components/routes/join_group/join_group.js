@@ -8,7 +8,7 @@ const JoinGroup = (props) => {
 
     return (
         <div className="dis main_container">
-
+            <p>Group</p>
         </div>
     )
 

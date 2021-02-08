@@ -9,11 +9,18 @@ import * as ActionType from './redux/actions/actions'
 import * as cookies from './factory/cookie'
 import LedLine from './style/led_line';
 import Cookies from 'universal-cookie';
-import login from './components/routes/login/login';
+import Login from './components/routes/login/login';
 import Intro from './components/routes/introducción/intro';
 import Main from './components/routes/main/main';
 import SideComponent from './components/static/side_component/side_component';
 import NewGroup from './components/routes/new_group/new_group';
+import Profile from './components/routes/profile/profile';
+import error404 from './components/routes/error/404';
+import JoinGroup from './components/routes/join_group/join_group';
+import Groups from './components/routes/groups/groups';
+import Messages from './components/routes/messages/messages';
+
+
 
 class App extends Component {
   state = {
@@ -36,6 +43,7 @@ class App extends Component {
           this.setState({ resolved: true })
           if (data.status === 200) {
             this.setState({ isSession: true, session: data.token })
+            console.log(data.user)
             this.props.setUser(data.user)
           }
         }).catch((err) => {
@@ -46,8 +54,13 @@ class App extends Component {
       this.setState({ resolved: true })
     }
   }
+
+  PrivateRoute = ({ component: Component, ...prop }) => {
+    <Route {...prop} render={(props) => (
+      this.state.isSession === true ? <Component {...props} /> : <Redirect to="/login" />
+    )} />
+  }
   render() {
-    console.log(this.props.user)
     const styles = {
       header: "application_header",
       body: "disR application_body",
@@ -59,35 +72,40 @@ class App extends Component {
       <BrowserRouter>
         <div className={styles.cont}>
           {this.state.isSession ?
-            <div className={styles.header}>
-              <Header status={this.state.isSession} />
+            <div className="application_header__spacer">
+              <div className={styles.header}>
+                <Header status={this.state.isSession} />
+              </div>
             </div>
             : null}
           <div className={styles.body}>
             {this.state.isSession ? <SideComponent /> : null}
             <div className={styles.body_cmp}>
-              {this.state.resolved ?
-                !this.state.isSession ?
+              <Switch>
+                {this.state.isSession ?
                   <Switch>
-                    <Route path="/login" exact component={login} />
-                    <Route path="/register" exact component={Register} />
-                    <Route path="*" exact component={() => <Redirect to="/login" />} />
+                    <Route path="/messages" component={Messages} />
+                    <Route path="/join-group" component={JoinGroup} />
+                    <Route path="/my-groups" component={() => <Groups user={this.props.user} />} />
+                    <Route path="/new-group" component={() => <NewGroup user={this.props.user} />} />
+                    <Route exact path="/home" component={() => <Main user={this.props.user} />} />
+                    <Route component={Profile} />
+                    <Redirect to="/home" />
                   </Switch>
                   :
                   <Switch>
-                    <Route path="/intro" exact component={() => <Intro />} />
-                    <Route path="/profile" exact component={() => <p>Sup!</p>} />
-                    <Route path="/new-group" exact component={() => <NewGroup />} />
-                    <Route path="/" exact component={() => <Main user={this.props.user} />} />
-                    <Route path="*" exact component={() => <Redirect to="/" />} />
-                  </Switch>
-                : <Route path="/" exact component={() => null} />
-              }
+                    <Route path="/login" component={Login} />
+                    <Route path="/register" component={Register} />
+                    <Route component={Login} />
+                  </Switch>}
+
+              </Switch>
             </div>
           </div>
         </div>
       </BrowserRouter>
-    )}
+    )
+  }
 }
 const mapStateToProps = state => {
   return {

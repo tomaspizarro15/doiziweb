@@ -13,7 +13,6 @@ const login = () => {
         error: "",
         url: 'http://localhost:8080/session/log-in'
     })
-    console.log("Login component")
     const fetchLogin = (url, event) => {
         event.preventDefault();
         fetch(url, {
@@ -26,9 +25,9 @@ const login = () => {
                 email: state.fields[0].value,
                 password: state.fields[1].value,
             })
-        }).then(res => res.json())
+        })
+        .then(res => res.json())
         .then(data => {
-         
             if (data.status === 200) {
                 const cookie = new Cookies();
                 cookie.set('session', data.session);
@@ -38,8 +37,10 @@ const login = () => {
                 console.log(data)
             }
         })
+        .catch(err => {
+            setState({ status: true, url: state.url, fields: state.fields, error: "Paso algo extraño , intentar mas tarde" })
+        })
     }
-
     const onChangeHandler = (event, i) => {
         const newFields = [...state.fields];
         newFields[i].value = event.target.value;

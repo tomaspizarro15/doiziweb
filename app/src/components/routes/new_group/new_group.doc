@@ -1,0 +1,26 @@
+New_groups es el componente encargado de crear nuevos grupos 
+
+Conexiones con servidor :>
+URL : http://localhost:8080/groups 
+METHOD : POST 
+HEADERS : Authorization / Content-Type
+BODY : {
+    title : String, 
+    description : String , 
+    adminId : String (ID del usuario , props.user (Redux))
+}
+
+Respuestas posibles del servidor (3)
+
+Satisfactoria : {
+    status : 201, 
+    group : {} (nuevo grupo creado)
+}
+Error de servidor :{
+    status : 500, 
+    error : Error(),
+}
+Error de autorización : {
+    status : 401, 
+    error :"Not authenticated", 
+}

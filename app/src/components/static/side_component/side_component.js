@@ -21,7 +21,8 @@ const SideComponent = props => {
                     { id: 0, label: "Create group", logo: addGroupLogo  , href : "/new-group"},
                     { id: 1, label: "Join group", logo: joinGroupLogo , href : "/join-group" },
                     { id: 2, label: "   My groups", logo: groupLogo  , href : "/my-groups"},
-                ]
+                ],
+                delay : 100
             },
             {
                 id: 2,
@@ -32,18 +33,25 @@ const SideComponent = props => {
                     { id: 1, label: "Noticias", logo: newsLogo  , href : "/news"},
                     { id: 2, label: "Notificaciones", logo: bellLogo , href : "/notifications" },
                     { id: 3, label: "Promociones", logo: promLogo , href : "/promotions" }
-                ]
+                ],
+                delay : 100
             }
         ],
         userBarStatus: false,
-        userProperties: [{ id: 0, label: "Ver perfil" ,href : "/" + props.user._id}, { id: 1, label: "Amigos" ,href : "/"}]
+        userProperties: [{ id: 0, label: "Ver perfil" ,href : "/"  , dinamic : true}, { id: 1, label: "Amigos" ,href : "/" , dinamic : false}],
+        user : {},
     })
+    useEffect(() => {
+        if(props.user) {
+            setState({ userBarStatus: state.userBarStatus, barElements: state.barElements, userProperties: state.userProperties , user : props.user})
+        }
+    }, [props.user]) 
 
-    const displayProfile = () => setState({ userBarStatus: !state.userBarStatus, barElements: state.barElements, userProperties: state.userProperties })
+    const displayProfile = () => setState({ userBarStatus: !state.userBarStatus, barElements: state.barElements, userProperties: state.userProperties ,user : state.user})
     const displayBarElement = (i) => {
         const newBarElements = [...state.barElements];
         newBarElements[i].status = !newBarElements[i].status;
-        setState({ userBarStatus: state.userBarStatus, barElements: newBarElements, userProperties: state.userProperties })
+        setState({ userBarStatus: state.userBarStatus, barElements: newBarElements, userProperties: state.userProperties , user : state.user })
     }
     let classes = {
         userBar: 'dis user_bar__props',
@@ -51,33 +59,33 @@ const SideComponent = props => {
         userBarLi: 'dis user_bar__props_li',
         sideBar: 'dis side_bar__props',
         sideBarLink: 'dis side_bar__link displayed',
+        userBarTitle : 'user_bar__title'
     }
     if (state.userBarStatus) {
         classes.userBar = 'dis user_bar__props displayed'
         classes.userBarLi = 'user_bar__props_li displayed'
         classes.userBarLink = 'user_bar__link displayed'
+        classes.userBarTitle = 'user_bar__title displayed'
     }
-
-    console.log(props.user._id)
     return (
         <div className="dis side_component">
             <ul className="dis side_bar">
                 <li className=" side_bar__element">
                     <div className={classes.userBarLink} onClick={displayProfile}>
-                        <t>{props.user.name} {props.user.lastname}</t>
+                        <p className={classes.userBarTitle}>{props.user.name} {props.user.lastname}</p>
                     </div>
                     <div className={classes.userBar} style={state.userBarStatus ? { height: `${state.userProperties.length * 3}rem` } : null} >
-                        {state.userProperties.map((propElement, i) => <li style={{ transitionDelay: `${i * 100}ms` }} className={classes.userBarLi} key={propElement.id}><Link className="side_bar_ref" to={propElement.href}>{propElement.label}</Link></li>)}
+                        {state.userProperties.map((propElement, i) => <div style={{ transitionDelay: `${i * 100}ms` }}  className={classes.userBarLi} key={propElement.id}><Link className="side_bar_ref" to = {propElement.href + state.user.username}>{propElement.label}</Link></div>)}
                     </div>
                 </li>
                 {state.barElements.map((el, i) =>
-                    <li key={el.id} className="side_bar__element" >
+                    <li key={el.id} className="side_bar__element"  style={{animationDelay : `${el.delay * el.id}ms`}}>
                         <div className={el.status ? "side_bar__link displayed" : "side_bar__link"} onClick={() => { displayBarElement(i) }} >
                             <Link to={el.href}>{el.label}</Link>
                         </div>
                         {el.status ?
                             <div className={classes.sideBar} style={{ height: `${el.properties.length * 3}rem` }}>
-                                {el.properties.map((propElement, i) => <li className="disRL side_bar__props_li" style={{ animationDelay: `${i * 100}ms` }} key={propElement.id}><Link className="side_bar_ref"  to={propElement.href}>{propElement.label}</Link><img className="side_bar_icon" src={propElement.logo}></img></li>)}
+                                {el.properties.map((propElement, i) => <div className="disRL side_bar__props_li" style={{ animationDelay: `${i * 100}ms` }} key={propElement.id}><Link className="side_bar_ref"  to={propElement.href}>{propElement.label}</Link><img className="side_bar_icon" src={propElement.logo}></img></div>)}
                             </div> : null}
                     </li>)}
             </ul>

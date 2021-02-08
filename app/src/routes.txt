@@ -1,0 +1,15 @@
+<Switch>
+                    <Route path="/login" exact component={login} />
+                    <Route path="/register" exact component={Register} />
+                    <Route path="*" exact component={() => <Redirect to="/login" />} />
+                  </Switch> :
+                  <Switch>
+                    <Route path="/new-group" exact component={() => <NewGroup />} />
+                    <Route path="/join-group" exact component={() => <JoinGroup />} />
+                    <Route path="/groups" exact component={() => <Groups />} />
+                    <Route path="/messages" exact component={() => <Messages />} />
+                    <Route path="/notifications" exact component={() => <Notifications />} />
+                    <Route path="/promotions" exact component={() => <Promotions />} />
+                    <Route path="/intro" exact component={() => <Intro />} />
+                    <Route path="/" exact component={() => <Main user={this.props.user} />} />
+                  </Switch>

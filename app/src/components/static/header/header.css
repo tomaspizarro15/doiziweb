@@ -1,20 +1,87 @@
+
 .header_cnt {
     display: inline-flex;
     align-items: center;
     justify-content: start;
-    width: 99.5%;
+    width: 98%;
     height: 100%;  
     color: white;
+    position: absolute;
 }
 .header_cnt a {
     color : white;
     margin: 0 5px 0 5px;
+    animation: displayTitle 1500ms ease-in-out;
 }
 .header_button {
     padding: 7.5px;
-    width: 5%;
+    width: 5rem;
     background-color: #2b2b2b;
     color: white;
     border: 0px;
     border-radius: 32px;
+    animation: 1500ms displayButton ease-in-out;
  }
+ .searcher_cnt {
+     width: 25%;
+     height: 100%;
+ }
+ .searcher {
+     width: 100%;
+     height: 100%;
+ }
+.searcher_result {
+    position: absolute;
+    margin-top: 3%;
+    width: 20%;
+    background-color: #2b2b2b;
+}
+.searcher_result ul {
+    padding: 0;
+    margin: 0;
+}
+@media(max-width : 768px) {
+    .searcher_cnt {
+        display: none;
+    }
+}
+ @keyframes displaySearcher {
+     0% {
+         width: 0%;
+         border-radius: 0px 32px 32px 0;
+     }
+     50% {
+         width: 100%;
+        border-radius: 0 32px 32px 0;
+     }
+     100% {
+         border-radius: 32px;
+     }
+ }
+ @keyframes displayButton {
+     0% {
+         background-color: #dddddd;
+     }
+     100% {
+         background-color: #2b2b2b;
+     }
+ }
+ @keyframes displayTitle {
+     0%{
+        color : #dddddd
+     }
+     100% {
+        color: #ffffff;
+     }
+ }
+ .searcher_input {
+     height: 50%;
+     width: 100%;
+     border-radius: 32px;
+     outline: none;
+     border: none;
+     box-shadow:  0 0 15px -7.5px;
+     text-indent: 5px;
+    animation: 1500ms displaySearcher ease-in-out;
+    animation-fill-mode: forwards;
+}

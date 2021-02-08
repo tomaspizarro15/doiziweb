@@ -4,7 +4,14 @@
     background-color: #fefefe;
     justify-content: start;
 }
-
+.side_component.darkmode {
+    background-color: #2b2b2b;
+}
+@media(max-width : 768px) {
+    .side_component  {
+        display: none;
+    }
+}
 .side_bar {
     width: 100%;
     align-items: flex-start;
@@ -16,7 +23,18 @@
  margin-bottom: -5%;
  padding: 10px 0 10px 0;
  transition: all 250ms ease-in-out;
+ animation: 500ms sideBarElement ease-in-out; 
+ animation-fill-mode: forwards;
+ transform: translateX(-100%);
 }
+@keyframes sideBarElement{
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+} 
 .user_bar__props_li {
     transform: translateX(-100%);
     margin: 5px 0 5px 0;
@@ -24,6 +42,14 @@
     width: 85%;
     border-radius: 0 32px 32px 0;
     transition:  all 100ms ease-in-out; 
+}
+.user_bar__title {
+    color: #5A7EFF;
+    font-weight: bold;
+    margin: 0;
+}
+.user_bar__title.displayed {
+    color: #2b2b2b;
 }
 .user_bar__link {
     width: 97.5%;
@@ -35,6 +61,9 @@
     transition : all 250ms ease-in-out;
     color : #2b2b2b,
 }
+.user_bar__link.darkmode{ 
+    background-color: #2b2b2b;
+}
 .user_bar__link.displayed {
     background-color: #5A7EFF;
 }
@@ -43,9 +72,10 @@
     transform: translateX(0);
     transition: all 500ms ease-in-out;
 }
-.user_bar__props.displayed {
-   
-}
+._user_bar__props_li.displayed.darkmode {
+    background-color: #3b3b3b;
+    color: white;
+} 
 .user_bar__props {
     width: 100%;
     margin-top: 5px;
@@ -65,6 +95,10 @@
     transition : all 250ms ease-in-out;
     color : #2b2b2b,
 }
+.side_bar__link.darkmode {
+    background-color: #3b3b3b;
+    color: white;
+} 
 .side_bar__link.displayed {
     background-color: #5A7EFF;
 }
