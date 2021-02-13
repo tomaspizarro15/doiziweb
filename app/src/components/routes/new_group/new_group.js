@@ -160,36 +160,42 @@ const newGroup = (props) => {
     }
 
     const submitHandler = () => {
-        const formdata = new FormData();
-        formdata.append('image')
+        const cookies = new Cookies();
+        const session = cookies.get('session')
         fetch('http://localhost:8080/groups', {
             method: 'POST',
             headers: {
-                "Authorization": ""
+                "Authorization": session,
+                "Content-Type": 'application/json'
+            },
+            body: {
+                adminId: user._id,
+                title: state.fields[0].value,
+                description: state.fields[1].value,
+                members: [user._id],
+                pendingUsers: [...invitedUsers],
             }
         })
     }
-    console.log(invitedUsers)
-
+    console.log(user)
     return (
         <div className="dis main_container">
             <div className="disRLT new_group__container">
                 <div className="dis new_group">
                     <form className="dis new_group__form">
-                        <Title texto="Crear nuevo grupo" color="#5A7FEE" size="2.5" />
+                        <Title texto="Nuevo grupo" color="#5A7FEE" size="2.5" />
                         {state.fields.map(field => {
                             return (
                                 <Fragment key={field.id}>
-                                    <label className="field">{field.label}</label>
+                                    <label className="field_label">{field.label}</label>
                                     <Fields field={field} change={(event) => { inputHandler(event, field.id) }} />
                                 </Fragment>
                             )
                         })}
-                        <button type="submit" className="global_button">Crear</button>
                     </form>
                     <div className="dis new_group__email">
                         <Title color="#5A7EFF" texto="Invitar por email" size="2.5" />
-                        <input className="global_input" />
+                        <input className="global_input" placeholder="example@example.com" />
                         <button className="global_button">Enviar correo</button>
                     </div>
                 </div>
@@ -220,8 +226,7 @@ const newGroup = (props) => {
                             })}
                         </div>
                         <ul className="disC new_group__users_found">
-                            <Title texto="Search result..." color="#5A7EFF" size="2.5" />
-
+                            <Title texto="Invitar usuarios" color="#5A7EFF" size="2.5" />
                             {foundUsers.length !== 0 ? foundUsers.map((user, i) => {
                                 return (
                                     <li key={user.username} className="disRL found_user">
@@ -232,8 +237,12 @@ const newGroup = (props) => {
                                         <button className="found_user_add" onClick={() => { inviteUsers(i) }}>+</button>
                                     </li>
                                 )
-                            }) : <div className="dis" style={{height : '100%'}}> <Title color="#7b7b7b" texto="Buscar usuarios..." /></div>}
+                            }) : <div className="dis" style={{ height: '100%' }}> <Title color="#7b7b7b" texto="tambien podras invitar mas usuarios mas adelante...uwu" /></div>}
                         </ul>
+                    </div>
+                    <div className="disRR new_group__confirmation">
+                        <button className="global_button_small purple" onClick={submitHandler}>Create</button>
+                        <button className="global_button_small red">Cancel</button>
                     </div>
                 </div>
             </div>
