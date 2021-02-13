@@ -110,10 +110,11 @@ class Register extends Component {
                                 return (
                                     <div className="disR register_data__field">
                                         <Fields styling={styles.input} change={(event) => { this.inputChangeHandler(event, i) }} key={field.id} field={field} />
-                                      <div className="tooltip"><span className="tooltiptext">{field.errorHelp}</span></div> 
+                                        {!field.status ? <div className="tooltip"><span className="tooltiptext">{field.errorHelp}</span></div> : null}
                                     </div>
                                 )
                             })}
+                            <Link className="register_to__login">al registrarse acepta los terminos de usuario</Link>
                             <button type="button" onClick={this.submitRegisterHandler} className="register_button">Registrarse</button>
                             <Link to="/login" className="register_to__login">iniciar sesión</Link>
                         </div>

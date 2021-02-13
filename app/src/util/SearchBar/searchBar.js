@@ -6,7 +6,7 @@ const SearchBar = (props) => {
     })
 
     return (
-        <input className="global_input" value={props.value} onKeyDown={props.keyDown} onKeyUp={props.keyUp}  onChange={props.change} />
+        <input className="global_input" placeholder={props.placeholder} value={props.value} onKeyDown={props.keyDown} onKeyUp={props.keyUp}  onChange={props.change} />
     )
 }
 export default SearchBar

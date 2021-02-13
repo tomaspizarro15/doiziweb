@@ -1,8 +1,8 @@
 import React from 'react';
-
+import './titles.css'
 const Title = (props) => {
     return (
-        <p style={{ color: props.color  , fontSize : props.size + 'px' , fontWeight : 'bold'}}>{props.texto}</p>
+        <p className="title_p" style={{ margin: "5px", color: props.color }}>{props.texto}</p>
     )
 }
 

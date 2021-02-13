@@ -114,8 +114,6 @@
     border: 2px solid transparent;
     transition : all 250ms ease-in; 
 }
-
-
 .register_data__field {
     width: 100%;
 }
@@ -128,6 +126,7 @@
     width: 25%;
     padding: 6px 0 6px 0;
     border-radius: 32px;
+    margin: 5px 0 5px 0;
     border: none;
     background-color: #2b2b2b;
     color: white;
@@ -143,16 +142,26 @@
     background-color: rebeccapurple;
 }
  .tooltiptext {
-    background-color: #3b3b3b;
-    width: 125px;
-    height: 35px;
-    font-size: 12px;
     position: absolute;
-    transform: translateY(-15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 16vw;
+    height: 50px;  
+    opacity: 0;
+    padding: 0 5px 0 5px;
     border-radius: 32px 32px 32px 0px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #eeeeee;
+    color: #2b2b2b;
+    transform: translateY(-40px);
+    transition : all 250ms ease-in-out;
 }
-.register_input:hover .tooltip , .tooltiptext {
-    visibility: visible;
+.register_data__field:hover  .tooltiptext{
+    opacity: 1;
+    transition : all 250ms ease-in-out;
 }
 
 @media(max-width : 768px) {

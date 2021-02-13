@@ -1,7 +1,6 @@
 .main_container {
     width: 99%;
     height: 98%;
-    border: 2px solid #dddddd;
     border-radius: 12px;
     animation : 500ms displayContainer  ease-in-out; 
 }
