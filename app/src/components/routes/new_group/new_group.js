@@ -5,6 +5,7 @@ import SearchBar from '../../../util/SearchBar/searchBar';
 import Title from '../../../util/Titles/titles';
 import './new_group.css';
 import Fields from '../../../util/Fields/fields';
+import HeadTitle from '../../../util/head_title/head_title';
 const newGroup = (props) => {
     const [user, setUser] = useState({})
 
@@ -32,15 +33,16 @@ const newGroup = (props) => {
         fields: [
             {
                 id: 0,
-                label: "Titulo del Grupo",
+                label: "Titulo",
                 type: 'input',
                 value: "",
                 placeholder: "titulo",
                 error: false,
+                errorMsg: "Titulo necesario. Maximo 250 caracteres",
                 requirements: {
                     length: {
                         required: true,
-                        min: 2.5,
+                        min: 2,
                         max: 32
                     },
                     special: {
@@ -50,34 +52,21 @@ const newGroup = (props) => {
             },
             {
                 id: 1,
-                label: "Descripcion del grupo",
+                label: "Descripcion",
                 type: 'textarea',
                 value: "",
-                placeholder: "descripción",
+                placeholder: "descripción...",
                 error: false,
+                errorMsg: "Descripcion necesaria. Maximo 250 caracteres",
                 requirements: {
                     length: {
                         required: true,
-                        min: 0,
+                        min: 2,
                         max: 250,
                     },
                 }
             },
-            {
-                id: 2,
-                label: "Imagen del grupo",
-                type: 'file',
-                value: "",
-                placeholder: "file",
-                error: false,
-                requirements: {
-                    length: {
-                        required: true,
-                        min: 0,
-                        max: 250,
-                    },
-                }
-            },
+
         ]
     })
     const [foundUsers, setFoundUsers] = useState([])
@@ -158,32 +147,57 @@ const newGroup = (props) => {
         newInvitedUsers.splice(i, 1)
         setInvitedUsers([...newInvitedUsers])
     }
-
-    const submitHandler = () => {
-        const cookies = new Cookies();
-        const session = cookies.get('session')
-        fetch('http://localhost:8080/groups', {
-            method: 'POST',
-            headers: {
-                "Authorization": session,
-                "Content-Type": 'application/json'
-            },
-            body: {
-                adminId: user._id,
-                title: state.fields[0].value,
-                description: state.fields[1].value,
-                members: [user._id],
-                pendingUsers: [...invitedUsers],
+    const validateSubmition = (fields) => {
+        const newFields = [...state.fields]
+        let isValid = true;
+        let fieldValid = true;
+        state.fields.map(field => {
+            const fieldReq = { ...field.requirements }
+            if (fieldReq.length) {
+                isValid = field.value.length > fieldReq.length.min && field.value.length < fieldReq.length.max && isValid;
+                fieldValid = field.value.length > fieldReq.length.min && field.value.length < fieldReq.length.max;
+                fieldValid ? field.error = false : field.error = true
             }
         })
+        setState({ searchBar: state.searchBar, fields: newFields })
+        return isValid;
     }
-    console.log(user)
+    const submitHandler = () => {
+        const newFields = [...state.fields]
+        const invitedUsersId = []; 
+        invitedUsers.map(users => {
+            invitedUsersId.push(users._id)
+        })
+        const isValidated = validateSubmition();
+        if (isValidated) {
+            const cookies = new Cookies();
+            const session = cookies.get('session')
+            fetch('http://localhost:8080/groups', {
+                method: 'POST',
+                headers: {
+                    "Authorization": session,
+                    "Content-Type": 'application/json',
+                },
+                body: JSON.stringify({
+                    admin: user._id,
+                    title: state.fields[0].value,
+                    description: state.fields[1].value,
+                    members: [{ member_id: user._id }],
+                    pendingUsers: invitedUsersId,
+                })
+            }).then(res => res.json()).then(data => console.log(data))
+        } else {
+            newFields.map(field => {
+                field.error = true;
+            })
+        }
+    }
     return (
         <div className="dis main_container">
             <div className="disRLT new_group__container">
                 <div className="dis new_group">
                     <form className="dis new_group__form">
-                        <Title texto="Nuevo grupo" color="#5A7FEE" size="2.5" />
+                        <HeadTitle texto="Crear nuevo grupo en DOIZI" color="#5A7FEE" size="2.5" />
                         {state.fields.map(field => {
                             return (
                                 <Fragment key={field.id}>
@@ -202,12 +216,12 @@ const newGroup = (props) => {
 
                 <div className="dis new_group__users">
                     <div className="dis new_group__users_search">
-                        <Title color="#5A7EFF" size="2.5" texto="Invitar usuarios" />
+                        <Title color="#5A7EFF" size="2.5" texto="Buscar usuarios" />
                         <SearchBar placeholder={state.searchBar.placeholder} value={state.searchBar.value} keyDown={refreshTimer} keyUp={fetchTimer} change={(event) => { findUsers(event) }} />
                     </div>
                     <div className="disR new_group__users_results">
                         <div className="disC new_group__users_invite">
-                            <Title texto="Dueño del grupo" color="#5A7EFF" size="2.5" />
+                            <Title texto="Administrador del grupo" color="#5A7EFF" size="2.5" />
                             <li className="disRL found_user" key={user.username}>
                                 <p className="found_user_name">{user.name} {user.lastname}</p>
                                 <p className="found_user_nick">@{user.username}</p>
@@ -241,8 +255,8 @@ const newGroup = (props) => {
                         </ul>
                     </div>
                     <div className="disRR new_group__confirmation">
-                        <button className="global_button_small purple" onClick={submitHandler}>Create</button>
-                        <button className="global_button_small red">Cancel</button>
+                        <button className="global_button_small purple" onClick={submitHandler}>Todo listo</button>
+                        <button className="global_button_small red">Cancelar</button>
                     </div>
                 </div>
             </div>

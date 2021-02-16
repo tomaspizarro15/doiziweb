@@ -133,6 +133,9 @@
     width: 75%;
     border: 1.5px solid gray;
 }
+.global_input:focus .tooltiptext {
+    opacity: 1;
+}
 .global_input:focus {
     border: 1.5px solid #5A7EFF;
 }
@@ -140,6 +143,12 @@
     border-color: red;
 }
 .global_input.error::placeholder {
+    color: red;
+}
+.global_textarea.error {
+    border-color: red;
+}
+.global_textarea.error::placeholder {
     color: red;
 }
 .global_textarea {

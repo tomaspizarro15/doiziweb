@@ -38,7 +38,7 @@ const Header = props => {
             </div>
             <div className="searcher_cnt">
                 <div className="disRL searcher">
-                    <input className="dis searcher_input" placeholder="search..." value={state.searchValue} onChange={(event) => { searchInputHandler(event) }}></input>
+                    <input className="disRL searcher_input" placeholder="search..." value={state.searchValue} onChange={(event) => { searchInputHandler(event) }}></input>
                 </div>
                 <div className="searcher_result">
                    

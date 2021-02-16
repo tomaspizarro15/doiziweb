@@ -1,0 +1,10 @@
+.head_title_p {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+@media(max-width : 768px) {
+    .head_title_p{
+        font-size: 22px;
+    }
+}

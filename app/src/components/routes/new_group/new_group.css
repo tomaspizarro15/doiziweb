@@ -115,7 +115,6 @@
 .field_label{
     color: #2b2b2b;
     font-size: 2vmin;
-    margin-bottom: 5px;
 }
 @media(max-width : 768px) {
     .new_group__users {
