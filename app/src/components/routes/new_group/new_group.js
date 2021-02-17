@@ -38,7 +38,7 @@ const newGroup = (props) => {
                 value: "",
                 placeholder: "titulo",
                 error: false,
-                errorMsg: "Titulo necesario. Maximo 250 caracteres",
+                errorMsg: "Titulo necesario. Maximo 32 caracteres",
                 requirements: {
                     length: {
                         required: true,

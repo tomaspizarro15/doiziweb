@@ -85,11 +85,11 @@ class Register extends Component {
                 this.setState({ fields: newFields })
             })
             .catch(err => {
-                console.log(err)
+
             })
     }
     render() {
-        console.log(this.state.fields)
+
         let phrase = this.state.phrase.split('')
         let daftpunkCameo = this.state.daftpunkCameo.split(' ')
         let styles = {

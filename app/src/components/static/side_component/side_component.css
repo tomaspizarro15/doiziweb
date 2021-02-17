@@ -95,6 +95,10 @@
     transition : all 250ms ease-in-out;
     color : #2b2b2b,
 }
+.side_bar__link_label {
+    width: 70%;
+    text-align: left;
+}
 .side_bar__link.darkmode {
     background-color: #3b3b3b;
     color: white;

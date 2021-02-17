@@ -20,7 +20,7 @@ import JoinGroup from './components/routes/join_group/join_group';
 import Groups from './components/routes/groups/groups';
 import Messages from './components/routes/messages/messages';
 
-
+import Socket from 'socket.io-client';
 
 class App extends Component {
   state = {
@@ -29,6 +29,7 @@ class App extends Component {
     resolved: false,
   }
   componentDidMount() {
+
     const cookie = new Cookies();
     const token = cookie.get('session');
     if (token) {
@@ -36,15 +37,20 @@ class App extends Component {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'authorization': cookies.get('session')
+          'Authorization': cookies.get('session')
         }
       }).then(promise => promise.json())
         .then(data => {
           this.setState({ resolved: true })
           if (data.status === 200) {
             this.setState({ isSession: true, session: data.token })
-            console.log(data.user)
+            
             this.props.setUser(data.user)
+            const socket = Socket('http://localhost:8080/');
+            socket.on('invitation', ((data) => {
+              console.log("Incoming data from server", data)
+            }))
+
           }
         }).catch((err) => {
           console.log(err)
@@ -79,7 +85,7 @@ class App extends Component {
             </div>
             : null}
           <div className={styles.body}>
-            {this.state.isSession ? <SideComponent /> : null}
+            {this.state.isSession ? <SideComponent user={this.props.user} /> : null}
             <div className={styles.body_cmp}>
               <Switch>
                 {this.state.isSession ?
@@ -88,7 +94,7 @@ class App extends Component {
                     <Route path="/join-group" component={JoinGroup} />
                     <Route path="/my-groups" component={() => <Groups user={this.props.user} />} />
                     <Route path="/new-group" component={() => <NewGroup user={this.props.user} />} />
-                    <Route exact path="/home" component={() => <Main user={this.props.user} />} />
+                    <Route exact path="/" component={() => <Main user={this.props.user} />} />
                     <Route component={Profile} />
                     <Redirect to="/home" />
                   </Switch>
