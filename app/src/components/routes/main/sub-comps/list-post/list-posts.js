@@ -9,7 +9,7 @@ const PostList = (props) => {
         <ul className="disC post_list" > {
             posts.reverse().map(post => {
                 return (
-                   <Post post ={post}/>
+                    <Post post={post} />
                 )
             })
         }</ul>

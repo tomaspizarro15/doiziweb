@@ -50,7 +50,7 @@ class App extends Component {
             socket.on('invitation', ((data) => {
               console.log("Incoming data from server", data)
             }))
-
+            socket.removeAllListeners('invitation'); 
           }
         }).catch((err) => {
           console.log(err)

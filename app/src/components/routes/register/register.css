@@ -142,6 +142,10 @@
     position: relative;
     background-color: rebeccapurple;
 }
+.reg_test {
+    display: flex;
+    justify-content: center;
+}
  .tooltiptext {
     position: absolute;
     display: flex;

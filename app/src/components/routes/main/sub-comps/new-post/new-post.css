@@ -12,8 +12,11 @@
     height: 100%;
 }
 .new_post__send_post {
-    width: 75%;
+    width: 85%;
    border-bottom: 1px solid gray;
+    padding: 1vw;
+    border-radius: 4px;
+    margin-bottom: 2%;
 }
 .new_post__counter {
     margin: 15px 0 0 0;
