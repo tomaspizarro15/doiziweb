@@ -1,20 +1,19 @@
 import { get } from './cookie'
-export const post = (post, url) => {
-    let posts = [];
-    fetch(url, {
+export const post = async (url, content) => {
+    const newPost = fetch(url, {
         method: 'POST',
         headers: {
             'Authorization': get('session'),
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            post: post
+            content: content
         })
     }).then(res => res.json())
         .then(data => {
-            posts.push(data.post)
+            return data;
         })
-    return posts;
+    return newPost;
 }
 
 export const getAll = async (url) => {

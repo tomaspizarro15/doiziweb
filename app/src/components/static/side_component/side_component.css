@@ -1,5 +1,12 @@
+.side_component__wrapper {
+    width: 15vw;
+    height: 1px;
+}
 .side_component {
-    width: 20rem;
+    position: fixed;
+    left: 0;
+    margin-top: 3rem;
+    width: 15vw;
     height: 100%;
     background-color: #fefefe;
     justify-content: start;
@@ -9,6 +16,9 @@
 }
 @media(max-width : 768px) {
     .side_component  {
+        display: none;
+    }
+    .side_component__wrapper {
         display: none;
     }
 }
@@ -98,6 +108,7 @@
 .side_bar__link_label {
     width: 70%;
     text-align: left;
+    margin: 0;
 }
 .side_bar__link.darkmode {
     background-color: #3b3b3b;

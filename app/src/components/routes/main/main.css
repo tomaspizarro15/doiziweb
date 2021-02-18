@@ -1,8 +1,9 @@
 .main_container {
-    width: 99%;
-    height: 98%;
-    border-radius: 12px;
+    width: 94%;
+    height: 95%;
     animation : 500ms displayContainer  ease-in-out; 
+    border-left:  1px solid #5a7eff;
+    border-right:  1px solid #5a7eff;
 }
 .main_container.darkmode {
     background-color: #2b2b2b;

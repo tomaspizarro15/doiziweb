@@ -1,0 +1,24 @@
+.post__feedback {
+    width: 95%;
+    height: 2rem;
+    background-color: red;
+  
+}
+.post {
+    margin: 5px 0 5px 0;
+    width: 65%;
+    min-height: 6rem;
+    background-color: #eee;
+    border-radius: 15px 10px  10px 0;
+}
+.post_text {
+    word-break:break-all;
+}
+.post__content {
+    width: 95%;
+    padding: 2%;
+}
+.post_user {
+    
+    width: 100%;
+}

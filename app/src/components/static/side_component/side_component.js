@@ -75,34 +75,36 @@ const SideComponent = props => {
         classes.userBarTitle = 'user_bar__title displayed'
     }
     return (
-        <div className="dis side_component">
-            <ul className="dis side_bar">
-                <li className=" side_bar__element">
-                    <div className={classes.userBarLink} onClick={displayProfile}>
-                        <p className={classes.userBarTitle}>{props.user.name} {props.user.lastname}</p>
-                    </div>
-                    <div className={classes.userBar} style={state.userBarStatus ? { height: `${state.userProperties.length * 3}rem` } : null} >
-                        {state.userProperties.map((propElement, i) => <div style={{ transitionDelay: `${i * 100}ms` }} className={classes.userBarLi} key={propElement.id}><Link className="side_bar_ref" to={propElement.href + state.user.username}>{propElement.label}</Link></div>)}
-                    </div>
-                </li>
-                {state.barElements.map((el, i) =>
-                    <li key={el.id} className="side_bar__element" style={{ animationDelay: `${el.delay * el.id}ms` }}>
-                        <div className={el.status ? "side_bar__link displayed" : "side_bar__link"} onClick={() => { displayBarElement(i) }} >
-                            <Link className="side_bar__link_label" to={el.href}>{el.label}</Link>
-                            {el.notIcon ? <Nots arr={state.user.invitations} /> : null}
+        <div className="dis side_component__wrapper">
+            <div className="dis side_component">
+                <ul className="dis side_bar">
+                    <li className=" side_bar__element">
+                        <div className={classes.userBarLink} onClick={displayProfile}>
+                            <p className={classes.userBarTitle}>{props.user.name} {props.user.lastname}</p>
                         </div>
-                        {el.status ?
-                            <div className={classes.sideBar} style={{ height: `${el.properties.length * 3}rem` }}>
-                                {el.properties.map((propElement, i) => {
-                                    return (
-                                        <div className="disRL side_bar__props_li" style={{ animationDelay: `${i * 100}ms` }} key={propElement.id}>
-                                            <Link className="side_bar_ref" to={propElement.href}>{propElement.label}</Link>
-                                            <img className="side_bar_icon" src={propElement.logo}></img>
-                                        </div>)
-                                })}
-                            </div> : null}
-                    </li>)}
-            </ul>
+                        <div className={classes.userBar} style={state.userBarStatus ? { height: `${state.userProperties.length * 3}rem` } : null} >
+                            {state.userProperties.map((propElement, i) => <div style={{ transitionDelay: `${i * 100 + 100}ms` }} className={classes.userBarLi} key={propElement.id}><Link className="side_bar_ref" to={propElement.href + state.user.username}>{propElement.label}</Link></div>)}
+                        </div>
+                    </li>
+                    {state.barElements.map((el, i) =>
+                        <li key={el.id} className="side_bar__element" style={{ animationDelay: `${el.delay * el.id}ms` }}>
+                            <div className={el.status ? "side_bar__link displayed" : "side_bar__link"} onClick={() => { displayBarElement(i) }} >
+                                <p className="side_bar__link_label" to={el.href}>{el.label}</p>
+                                {el.notIcon ? <Nots arr={state.user.invitations} /> : null}
+                            </div>
+                            {el.status ?
+                                <div className={classes.sideBar} style={{ height: `${el.properties.length * 3}rem` }}>
+                                    {el.properties.map((propElement, i) => {
+                                        return (
+                                            <div className="disRL side_bar__props_li" style={{ animationDelay: `${i * 100 + 150}ms` }} key={propElement.id}>
+                                                <Link className="side_bar_ref" to={propElement.href}>{propElement.label}</Link>
+                                                <img className="side_bar_icon" src={propElement.logo}></img>
+                                            </div>)
+                                    })}
+                                </div> : null}
+                        </li>)}
+                </ul>
+            </div>
         </div>
     )
 
