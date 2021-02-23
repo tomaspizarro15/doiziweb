@@ -1,11 +1,10 @@
 .post_wrapper {
-    width: 80%;
+    width: 100%;
     border-radius: 16px 18px 18px 0;
     transition : all 250ms ease-in-out;
     margin: 5px;
     background-color: white;
     box-shadow: 0 0 10px -7px;
-   
 } 
 .post {
     border-radius: 16px;
@@ -29,7 +28,6 @@
     height: 100%;
     background-color: red;
 }
-
 .post_wrapper:hover .post_side {
     opacity: 1;
     background-color: #5a7eff;

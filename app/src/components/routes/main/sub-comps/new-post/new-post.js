@@ -37,7 +37,6 @@ const NewPost = props => {
     return (
         <div className="disR new_post__ctn">
             <div className="disC new_post__main">
-                <Title texto="Inicio" color="#5A7EFF" />
                 <div className="disCL new_post__send_post">
                     <Title texto={"Hola " + props.user.name + '...'} color="gray" />
                     <textarea value={value} onChange={(e) => { inputHandler(e) }} className="global_textarea short" placeholder="Comentar que esta sucediendo" />

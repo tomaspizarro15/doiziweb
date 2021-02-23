@@ -6,7 +6,7 @@ const PostList = (props) => {
     const posts = [...props.posts]
 
     return (
-        <ul className="disC post_list" > {
+        <ul className="dis post_list" > {
             posts.reverse().map(post => {
                 return (
                     <Post post={post} />
