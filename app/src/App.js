@@ -44,13 +44,13 @@ class App extends Component {
           this.setState({ resolved: true })
           if (data.status === 200) {
             this.setState({ isSession: true, session: data.token })
-            
+
             this.props.setUser(data.user)
             const socket = Socket('http://localhost:8080/');
             socket.on('invitation', ((data) => {
               console.log("Incoming data from server", data)
             }))
-            socket.removeAllListeners('invitation'); 
+            socket.removeAllListeners('invitation');
           }
         }).catch((err) => {
           console.log(err)
@@ -69,20 +69,20 @@ class App extends Component {
   render() {
     const styles = {
       header: "application_header",
-      body: "disR application_body",
+      body: "disRLT application_body",
       foot: "dis application_foot",
       body_cmp: " dis application_body__component",
-      cont: "dis application_container",
+      cont: "disC application_container",
     }
     return (
       <BrowserRouter>
         <div className={styles.cont}>
           {this.state.isSession ?
-            <div className="application_header__spacer">
-              <div className={styles.header}>
-                <Header status={this.state.isSession} />
-              </div>
-            </div>
+            <Fragment>
+              <Header />
+              <div className="header_spacer"><p></p></div>
+            </Fragment>
+
             : null}
           <div className={styles.body}>
             {this.state.isSession ? <SideComponent user={this.props.user} /> : null}

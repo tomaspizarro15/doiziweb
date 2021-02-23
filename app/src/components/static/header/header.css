@@ -1,87 +1,52 @@
-
-.header_cnt {
-    display: inline-flex;
-    align-items: center;
-    justify-content: start;
-    width: 98%;
-    height: 100%;  
-    color: white;
-    position: absolute;
+.header {
+    height: 3rem;
+    position: relative;
+    width: 100%;
+    z-index: 10000;
 }
-.header_cnt a {
-    color : white;
-    margin: 0 5px 0 5px;
-    animation: displayTitle 1500ms ease-in-out;
+.header_wrap {
+    position: fixed;
+    height: inherit;
+    width: 100%;
+    background-color: #2b2b2b;
+
+}
+.header_content {
+    width: 98%;
+    background-color: #2b2b2b;
+    height: 100%;
+}
+.header_links {
+    width: 100%;
+    height: fit-content;
+}
+.header_logout {
+    width: 10%;
+    height: 100%;
 }
 .header_button {
-    padding: 7.5px;
-    width: 5rem;
+    width: 60%;
+    height: 80%;
+    border: 2px solid #2b2b2b;
+    border-radius: 4px;
+    outline: none;
     background-color: #2b2b2b;
     color: white;
-    border: 0px;
-    border-radius: 32px;
-    animation: 1500ms displayButton ease-in-out;
- }
- .searcher_cnt {
-     width: 25%;
-     height: 100%;
- }
- .searcher {
-     width: 100%;
-     height: 100%;
- }
-.searcher_result {
-    position: absolute;
-    margin-top: 3%;
-    width: 20%;
-    background-color: #2b2b2b;
+} 
+.header_button:hover {
+    border: 2px solid #3b3b3b;
+    background-color: #3b3b3b;
 }
-.searcher_result ul {
-    padding: 0;
-    margin: 0;
+.header_spacer {
+    width: 100%;
+    height: 3rem;
 }
-@media(max-width : 768px) {
-    .searcher_cnt {
-        display: none;
-    }
+.header_title {
+    color: white;
+    font-weight: bold;
+    font-size:2.5vmin;
+    text-decoration: none;
 }
- @keyframes displaySearcher {
-     0% {
-         width: 0%;
-         border-radius: 0px 32px 32px 0;
-     }
-     50% {
-         width: 100%;
-        border-radius: 0 32px 32px 0;
-     }
-     100% {
-         border-radius: 32px;
-     }
- }
- @keyframes displayButton {
-     0% {
-         background-color: #dddddd;
-     }
-     100% {
-         background-color: #2b2b2b;
-     }
- }
- @keyframes displayTitle {
-     0%{
-        color : #dddddd
-     }
-     100% {
-        color: #ffffff;
-     }
- }
- .searcher_input {
-     height: 50%;
-     width: 100%;
-     border-radius: 32px;
-     outline: none;
-     border: none;
-     box-shadow:  0 0 15px -7.5px;
-     text-indent: 5px;
-    animation: 1500ms displaySearcher ease-in-out;
-    animation-fill-mode: forwards;
+.header_title:hover {
+    color: #5A7EFF;
 }

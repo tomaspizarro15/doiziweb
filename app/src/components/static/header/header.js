@@ -8,7 +8,9 @@ import Cookies from 'universal-cookie';
 
 const Header = props => {
     const [state, setState] = useState({
-        links: [],
+        links: [
+            { id: 0, }
+        ],
         usersFound: [{}],
         searchValue: "",
     })
@@ -16,7 +18,7 @@ const Header = props => {
     const logoutHandler = () => {
         const cookie = new Cookies();
         cookie.remove('session');
-        window.location.reload();
+        window.location.replace('http://localhost:3000/login');
     }
 
     const searchInputHandler = (event) => {
@@ -24,30 +26,19 @@ const Header = props => {
     }
 
     return (
-
-            <header className="header_cnt">
-            {/* <div className="header_burger__button">
-                <ul>
-                    <li>---</li>
-                    <li>---</li>
-                    <li>---</li>
-                </ul>
-            </div> */}
-            <div className="disRL" style={{ width: "20%" }}>
-                <Link style={{ fontWeight: "bold", fontSize: "24px" , textDecoration : 'none' }} to="/">DOIZI</Link>
-            </div>
-            <div className="searcher_cnt">
-                <div className="disRL searcher">
-                    <input className="disRL searcher_input" placeholder="search..." value={state.searchValue} onChange={(event) => { searchInputHandler(event) }}></input>
-                </div>
-                <div className="searcher_result">
-                   
+        <nav className="header">
+            <div className="dis header_wrap">
+                <div className="disRL header_content">
+                    <Link className="header_title" to="/">DOIZI</Link>
+                    <div className="disR header_links">
+                        
+                    </div>
+                    <div className="disR header_logout">
+                        <button className="header_button" onClick={logoutHandler}>Log out</button>
+                    </div>
                 </div>
             </div>
-            <div style={{ width: "80%" }}></div>
-            <button className="header_button" onClick={logoutHandler}>Logout</button>
-        </header>
-   
+        </nav>
     )
 }
 export default Header;
