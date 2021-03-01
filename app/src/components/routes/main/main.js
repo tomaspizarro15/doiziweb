@@ -17,7 +17,7 @@ const Main = (props) => {
                 post.createdAt = new Date(post.createdAt).getDate() + '/' + new Date(post.createdAt).getMonth() + ' - ' + new Date(post.createdAt).getHours() + ':' + new Date(post.createdAt).getMinutes()
             })
             setPosts(data.posts)
-
+            
         } catch (error) {
             setPosts([]);
         }

@@ -6,7 +6,6 @@ const storedState = {
 }
 
 const reducer = (state = storedState, action) => {
-
     switch (action.type) {
         case Action.SET_USER:
             const newState = { ...state };

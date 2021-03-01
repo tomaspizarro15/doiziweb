@@ -4,7 +4,7 @@ import './list-posts.css';
 
 const PostList = (props) => {
     const posts = [...props.posts]
-
+    console.log(posts)
     return (
         <ul className="dis post_list" > {
             posts.reverse().map(post => {

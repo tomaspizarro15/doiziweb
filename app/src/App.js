@@ -29,9 +29,9 @@ class App extends Component {
     resolved: false,
   }
   componentDidMount() {
-
     const cookie = new Cookies();
     const token = cookie.get('session');
+   
     if (token) {
       fetch('http://localhost:8080/session', {
         method: 'GET',
@@ -43,6 +43,7 @@ class App extends Component {
         .then(data => {
           this.setState({ resolved: true })
           if (data.status === 200) {
+            console.log(data)
             this.setState({ isSession: true, session: data.token })
 
             this.props.setUser(data.user)
@@ -122,7 +123,4 @@ const dispatchActionsToProps = dispatch => {
     setUser: (user) => dispatch(ActionType.setUser(user))
   }
 }
-
-console.log()
-
 export default connect(mapStateToProps, dispatchActionsToProps)(App);
