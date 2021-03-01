@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as cookies from './../../../../../factory/cookie';
 import './post.css';
 import Arrow from '../../../../../util/arrow/arrow';
+import ListWithIcon from '../../../../../util/Lists/list_with_icon';
 
 
 const Post = props => {
@@ -25,14 +26,16 @@ const Post = props => {
                 }
             })
     }, [props.post])
+    console.log(props.post)
     return (
         <div className="disR post_wrapper">
             <div className="post_side">
+                <ListWithIcon/>
             </div>
             <div className="disC post">
                 <div className="dis post__content">
                     <div className="disRL post_user">
-                        <p className="post_user__name">{state.userData.name}{state.userData.lastname}</p>
+                        <p className="post_user__name">{props.post.userFullName}</p>
                         <p className="post_user__nick">@{props.post.username}</p>
                         <div id="spacer" style={{ width: '70%' }}></div>
                         <p className="post_user__nick">{props.post.createdAt}</p>
@@ -42,7 +45,6 @@ const Post = props => {
                     </div>
                 </div>
                 <div className="disRL post__feedback">
-
                     <input placeholder="Hacer un comentario" className="global_input" />
                     <button className="dis global_button_small">
                         <Arrow color="#2B2B2B" />

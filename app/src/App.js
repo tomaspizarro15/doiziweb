@@ -4,18 +4,14 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Register from './components/routes/register/register';
 import Header from './components/static/header/header';
-
 import * as ActionType from './redux/actions/actions'
 import * as cookies from './factory/cookie'
-import LedLine from './style/led_line';
 import Cookies from 'universal-cookie';
 import Login from './components/routes/login/login';
-import Intro from './components/routes/introducción/intro';
 import Main from './components/routes/main/main';
 import SideComponent from './components/static/side_component/side_component';
 import NewGroup from './components/routes/new_group/new_group';
 import Profile from './components/routes/profile/profile';
-import error404 from './components/routes/error/404';
 import JoinGroup from './components/routes/join_group/join_group';
 import Groups from './components/routes/groups/groups';
 import Messages from './components/routes/messages/messages';

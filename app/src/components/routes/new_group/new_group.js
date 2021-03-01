@@ -164,7 +164,7 @@ const newGroup = (props) => {
     }
     const submitHandler = () => {
         const newFields = [...state.fields]
-        const invitedUsersId = []; 
+        const invitedUsersId = [];
         invitedUsers.map(users => {
             invitedUsersId.push(users._id)
         })
@@ -182,7 +182,7 @@ const newGroup = (props) => {
                     admin: user._id,
                     title: state.fields[0].value,
                     description: state.fields[1].value,
-                    members: [{ member_id: user._id }],
+                    members: user._id,
                     pendingUsers: invitedUsersId,
                 })
             }).then(res => res.json()).then(data => console.log(data))

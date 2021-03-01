@@ -9,24 +9,24 @@ const Profile = (props) => {
     })
     const cookie = new Cookies();
     useEffect(() => {
-        fetch('http://localhost:8080/users/' + window.location.pathname.replace('/', ''), {
+        fetch(`http://localhost:8080/users/?q=${null}`, {
             method: 'GET',
             headers: {
                 "Authorization": cookie.get('session'),
                 "Content-Type": "application/json",
             }
         })
-            .then(res => res.json())
-            .then(data => {
-                data.user ? setState({ user: data.user, exist: true }) : setState({ user: {}, exist: false });
-            })
-    }, [])
+        .then(res => res.json())
+        .then(data => {
+            data.user ? setState({ user: data.user, exist: true }) : setState({ user: {}, exist: false });
+        })
+}, [])
     console.log(state)
-    return (
-        <div className="dis main_container">
-            <div></div>
-        </div>
-    )
+return (
+    <div className="dis main_container">
+        <div></div>
+    </div>
+)
 
 }
 
