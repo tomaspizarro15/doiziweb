@@ -1,6 +1,6 @@
 import { get } from './cookie'
 export const post = async (url, content) => {
-    const newPost = fetch(url, {
+    fetch(url, {
         method: 'POST',
         headers: {
             'Authorization': get('session'),
@@ -13,12 +13,11 @@ export const post = async (url, content) => {
         .then(data => {
             return data;
         })
-    return newPost;
 }
 
 export const getAll = async (url) => {
     let dataRecieved;
-    return dataRecieved = fetch(url, {
+    return dataRecieved = await fetch(url, {
         method: 'GET',
         headers: {
             'Authorization': get('session'),

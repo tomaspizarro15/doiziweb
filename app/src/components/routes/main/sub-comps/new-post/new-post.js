@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 
 import Title from '../../../../../util/Titles/titles';
 import PostList from '../list-post/list-posts'
-import * as Post from './../../../../../factory/posts'
+import * as Cookies from './../../../../../factory/cookie'
 import './new-post.css';
 
 
@@ -10,14 +10,10 @@ let classes = {
     counter: 'new_post__counter'
 }
 
-
 const NewPost = props => {
     const [counter, setCounter] = useState(0);
     const [maxCounter, setMaxCounter] = useState(250)
     const [value, setValue] = useState("");
-
-
-   
     useEffect(() => {
         if (maxCounter > counter) {
             classes = 'new_post__counter error'
@@ -30,8 +26,16 @@ const NewPost = props => {
     }
 
     const submitPostHandler = async () => {
-        const result = await Post.post('http://localhost:8080/posts/post', value)
-        console.log(result)
+        fetch('http:/localhost:8080/posts/post', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': Cookies.get('session')
+            },
+            body: {
+                content: value
+            }
+        }).then()
     }
 
     return (
@@ -43,7 +47,7 @@ const NewPost = props => {
                     <p className={counter < maxCounter ? "new_post__counter" : "new_post__counter error"}>{counter} / {maxCounter}</p>
                     <button className="global_button" disabled={counter > maxCounter ? true : false || counter <= 0} onClick={submitPostHandler}>Publicar</button>
                 </div>
-                <PostList/>
+                <PostList />
             </div>
             <div className="disC new_post__side">
                 <Title texto="Dummy trendings" />

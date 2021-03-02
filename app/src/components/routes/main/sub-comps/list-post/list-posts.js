@@ -3,26 +3,28 @@ import Post from '../post/post';
 import Socket from 'socket.io-client'
 import './list-posts.css';
 import * as Posts from './../../../../../factory/posts'
-
+import * as Cookies from './../../../../../factory/cookie'
 
 const PostList = (props) => {
     const [posts, setPosts] = useState([])
 
-    useEffect(async () => {
-        try {
-            Posts.getAll('http://localhost:8080/posts').then(data => {
-                setPosts(data.posts)
-            }).catch()
-            posts.map((post) => {
-                post.createdAt = new Date().getFullYear()
-            })
-            return new window.AbortController().abort();
-        } catch (error) {
+    useEffect(() => {
+      
+        fetch('http://localhost:8080/posts', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': Cookies.get('session')
+            }
+        }).then(res => res.json()).then(data => {
+            setPosts(data.posts)
+        }).catch(() => {
             setPosts([]);
-        }
+
+        })
     }, [])
 
-    useEffect(async () => {
+    useEffect(() => {
         const socket = Socket('http://localhost:8080/')
         socket.on('new_post', (socket) => setPosts([...posts, socket.post]))
         socket.removeAllListeners('invitation');
@@ -33,8 +35,9 @@ const PostList = (props) => {
     return (
         <ul className="dis post_list" > {
             posts.reverse().map(post => {
+                console.log(post)
                 return (
-                    <Post post={post} />
+                    <Post key={post._id} post={post} />
                 )
             })
         }</ul>

@@ -26,9 +26,9 @@ const Post = props => {
                 }
             })
     }, [props.post])
-    console.log(props.post)
+
     return (
-        <div className="disR post_wrapper">
+        <div className="disR post_wrapper" key={props.post.id}>
             <div className="post_side">
                 <ListWithIcon/>
             </div>

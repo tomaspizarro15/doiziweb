@@ -6,7 +6,6 @@ import './main.css'
 import NewPost from './sub-comps/new-post/new-post';
 
 const Main = (props) => {
-
     return (
         <div className="disC main_container">
             <NewPost  user={props.user} />
