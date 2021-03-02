@@ -43,7 +43,7 @@ const NewPost = props => {
                     <p className={counter < maxCounter ? "new_post__counter" : "new_post__counter error"}>{counter} / {maxCounter}</p>
                     <button className="global_button" disabled={counter > maxCounter ? true : false || counter <= 0} onClick={submitPostHandler}>Publicar</button>
                 </div>
-                <PostList posts={props.posts} />
+                <PostList/>
             </div>
             <div className="disC new_post__side">
                 <Title texto="Dummy trendings" />

@@ -27,7 +27,18 @@ class App extends Component {
   componentDidMount() {
     const cookie = new Cookies();
     const token = cookie.get('session');
-   
+
+    const outer = () => {
+      let counter = 0;
+      function incrementCounter() {counter++; console.log(counter) }
+      return incrementCounter;
+    }
+
+    const myNewFunction = outer();
+    myNewFunction()
+    myNewFunction()
+
+
     if (token) {
       fetch('http://localhost:8080/session', {
         method: 'GET',
